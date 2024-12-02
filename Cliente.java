@@ -9,6 +9,7 @@ public class Cliente {
 		this.id = contagem+1;
 		this.nome = nome;
 		this.email = email;
+		contagem++;
 	}
 
 	// Setters e getters

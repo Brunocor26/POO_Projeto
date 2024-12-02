@@ -1,4 +1,5 @@
 public class Produto {
+	private static String[] catalogo = {"Raquetes", "Bolas", "Roupa", "Calcado", "Acessorios"};
 	private static int contador=0;
 	private int id;
 	private String nome;
@@ -10,9 +11,10 @@ public class Produto {
 	public Produto(String nome, String categoria, double preco, int stock) {
 		this.id = 1+contador;
 		this.nome = nome;
-		this.categoria = categoria;
+		this.categoria = Menus.categoria_escolher();
 		this.preco = preco;
 		this.stock = stock;
+		contador++;
 	}
 
 	// setters e getters
@@ -37,7 +39,7 @@ public class Produto {
 	}
 
 	public void setCategoria(String categoria) {
-		this.categoria = categoria;
+		this.categoria = Menus.categoria_escolher();
 	}
 
 	public double getPreco() {

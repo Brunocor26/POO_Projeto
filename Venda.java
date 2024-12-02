@@ -1,6 +1,6 @@
 import java.time.LocalDate;
 import java.util.*;
-import myinputs.Ler;
+
 public class Venda {
 	private static int contagem=0;
 	private int id;
@@ -16,6 +16,7 @@ public class Venda {
 		this.produtos = produtos;
 		this.quantidade= quantidade;
 		this.data = data;
+		contagem++;
 	}
 
 	// Getters e setters

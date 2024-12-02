@@ -35,6 +35,14 @@ public class Loja {
 		this.vendas = vendas;
 	}
 
+	//metodos
+	public void adicionarCliente(Cliente c) {
+		this.clientes.add(c);
+		}
+	
+	public void adicionarProduto(Produto p) {
+		this.produtos.add(p);
+		}
 	@Override
 	public String toString() {
 		return "Loja \n[Produtos=" + produtos + "\nClientes=" + clientes + "\nVendas=" + vendas + "]";

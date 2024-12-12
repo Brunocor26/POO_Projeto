@@ -1,5 +1,5 @@
 public class Produto {
-	private static String[] catalogo = {"Raquetes", "Bolas", "Roupa", "Calcado", "Acessorios"};
+	private static String[] catalogo = {"Computadores Portateis", "Computadores Desktop", "Monitores", "TVs", "Telemóveis", "Tablets"};
 	private static int contador=0;
 	private int id;
 	private String nome;

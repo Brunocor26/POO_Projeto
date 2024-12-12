@@ -5,26 +5,29 @@ public class Menus {
 		int k;
 		
 		do {
-			System.out.println("1-Raquetes\n2-Bolas\n3-Roupa\n4-Calcado\n5-Acessorios");
+			System.out.println("1-Computadores Portáteis\n2-Computadores Desktop\n3-Monitores\n4-TVs\n5-Telemóveis\n6-Tablets");
 			k=Ler.umInt();
 			switch (k) {
 			case 1:
-				return "Raquetes";
+				return "Computadores Portáteis";
 		
 			case 2:
-				return "Bolas";
+				return "Computadores Desktop";
 				
 			case 3:
-				return "Roupa";
+				return "Monitores";
 				
 			case 4:
-				return "Calcado";
+				return "TVs";
 			
 			case 5:
-				return "Acessorios";
+				return "Telemóveis";
+			
+			case 6:
+				return "Tablets";
 			}
 
-		} while (k!=1 && k!=2 && k!=3 && k!=4 && k!=5);
+		} while (k!=1 && k!=2 && k!=3 && k!=4 && k!=5 && k!=6);
 		return ("Invalido");
 	}
 	
@@ -90,7 +93,7 @@ public class Menus {
 	public static void menu_produtos(Loja l) {
 		int k;
 		do {
-			System.out.println("Produtos: " + l.getProdutos() + "\n1-Adicionar\n2-Remover\n3-Alterar categoria\n4-Alterar preco\n5-Alterar Stock\n0-Sair");
+			System.out.println("Produtos: " + l.getProdutos() + "\n1-Adicionar\n2-Remover\n3-Alterar nome\n4-Alterar categoria\n5-Alterar preço\n6-Alterar Stock\n0-Sair");
 			k= Ler.umInt();
 			switch (k) {
 			case 1:
@@ -106,7 +109,7 @@ public class Menus {
 				System.out.println("Nome:");
 				String s= Ler.umaString();
 				System.out.println("Preço: ");
-				int p1=Ler.umInt();
+				double p1=Ler.umDouble();
 				System.out.println("Stock: ");
 				l.adicionarProduto(new Produto(s, s1, p1, Ler.umInt()));
 				break;
@@ -116,20 +119,27 @@ public class Menus {
 				l.getProdutos().remove(Ler.umInt()-1);   //posicao no array = id cliente-1
 				break;
 				
-			case 3:
+			case 3: //mudar nome
 				System.out.println("Id do produto:");
 				int z= Ler.umInt();
 				System.out.println("Novo nome:");
 				l.getProdutos().get(z).setNome(Ler.umaString());
 				break;
 	
-			case 4:
+			case 4://mudar categoria
+				System.out.println("Id do produto:");
+				int z1= Ler.umInt();
+				System.out.println("Nova categoria:");
+				l.getProdutos().get(z1).setCategoria(categoria_escolher());
+				break;
+				
+			case 5: //mudar preço
 				System.out.println("Id do Produto:");
 				int z2= Ler.umInt();
 				System.out.println("Novo Preço:");
 				l.getProdutos().get(z2).setPreco(Ler.umDouble());
 			
-			case 5:
+			case 6: //mudar stock
 				System.out.println("Id do Produto:");
 				int z3= Ler.umInt();
 				System.out.println("Novo Stock:");

@@ -5,20 +5,26 @@ public class Venda {
 	private static int contagem=0;
 	private int id;
 	private Cliente cliente;
-	private ArrayList<Produto> produtos;
-	private ArrayList<Integer> quantidade;
+	private ArrayList<ProdutoQuantidade> prod_quant;  //tuplos com (id_produto, quantidade)
 	private LocalDate data;
 
 	// Construtor
-	public Venda(Cliente cliente, ArrayList<Produto> produtos, ArrayList<Integer> quantidade, LocalDate data) {
+	public Venda(Cliente cliente, ArrayList<ProdutoQuantidade> prod_quant, LocalDate data) {
 		this.id = 1+contagem;
 		this.cliente = cliente;
-		this.produtos = produtos;
-		this.quantidade= quantidade;
+		this.prod_quant=prod_quant;
 		this.data = data;
 		contagem++;
 	}
 
+	public static int getContagem() {
+		return contagem;
+	}
+
+	public static void setContagem(int contagem) {
+		Venda.contagem = contagem;
+	}
+	
 	// Getters e setters
 	public int getId() {
 		return id;
@@ -36,20 +42,13 @@ public class Venda {
 		this.cliente = cliente;
 	}
 
-	public List<Produto> getProdutos() {
-		return produtos;
+
+	public ArrayList<ProdutoQuantidade> getProd_quant() {
+		return prod_quant;
 	}
 
-	public void setProdutos(ArrayList<Produto> produtos) {
-		this.produtos = produtos;
-	}
-
-	public ArrayList<Integer> getQuantidade() {
-		return quantidade;
-	}
-
-	public void setQuantidade(ArrayList<Integer> quantidade) {
-		this.quantidade = quantidade;
+	public void setProd_quant(ArrayList<ProdutoQuantidade> prod_quant) {
+		this.prod_quant = prod_quant;
 	}
 
 	public LocalDate getData() {
@@ -58,17 +57,6 @@ public class Venda {
 
 	public void setData(LocalDate data) {
 		this.data = data;
-	}
-	
-	//Metodos
-	public double Total() {
-		if(quantidade.size()!= produtos.size()) {
-			//erro
-		}
-		double t=0;
-		for(int i=0; i<quantidade.size();i++)
-			t+= quantidade.get(i)*produtos.get(i).getPreco();
-		return t;
 	}
 	
 	@Override

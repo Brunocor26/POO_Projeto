@@ -35,14 +35,38 @@ public class Loja {
 		this.vendas = vendas;
 	}
 
-	//metodos
+	// metodos
 	public void adicionarCliente(Cliente c) {
 		this.clientes.add(c);
-		}
-	
+	}
+
 	public void adicionarProduto(Produto p) {
 		this.produtos.add(p);
+	}
+
+	public Produto prod_pelo_id(int id_prod) throws IdException {
+		for (int i = 0; i < produtos.size(); i++) {
+			if (produtos.get(i).getId() == id_prod)
+				return produtos.get(i);
 		}
+		throw new IdException("Não há produtos com o ID " + id_prod + "!");
+	}
+
+	public double Total_Compra() {
+		double t = 0.0;
+		for (int i = 0; i < vendas.size(); i++) {
+			for (int j = 0; j < this.vendas.get(i).getProd_quant().size(); j++) {
+				try {
+					t += prod_pelo_id(this.vendas.get(i).getProd_quant().get(j).getId_produto()).getPreco()
+							* this.vendas.get(i).getProd_quant().get(i).getQuantidade();
+				} catch (IdException e) {
+					e.getMessage();
+				}
+			}
+		}
+		return t;
+	}
+
 	@Override
 	public String toString() {
 		return "Loja \n[Produtos=" + produtos + "\nClientes=" + clientes + "\nVendas=" + vendas + "]";

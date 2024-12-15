@@ -1,4 +1,4 @@
-import java.util.*;
+
 
 public class ProdutoQuantidade { //objeto com o produto e a quantidade vendida correspondente
 	private int id_produto;
@@ -28,6 +28,5 @@ public class ProdutoQuantidade { //objeto com o produto e a quantidade vendida c
 
 	public void setQuantidade(int quantidade) {
 		this.quantidade = quantidade;
-	}
 	}
 }

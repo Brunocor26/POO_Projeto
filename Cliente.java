@@ -1,24 +1,22 @@
-public class Cliente {
-	private static int contagem=0;
-	private int id;
+public class Cliente extends Pessoa {
+	private int nif;
 	private String nome;
 	private String email;
 
 	// Construtor
-	public Cliente(String nome, String email) {
-		this.id = contagem+1;
+	public Cliente(int nif, String nome, String email) {
+		this.nif = nif;
 		this.nome = nome;
 		this.email = email;
-		contagem++;
 	}
 
 	// Setters e getters
-	public int getId() {
-		return id;
+	public int getNif() {
+		return nif;
 	}
 
-	public void setId(int id) {
-		this.id = id;
+	public void setNif(int nif) {
+		this.nif = nif;
 	}
 
 	public void setNome(String nome) {
@@ -39,6 +37,6 @@ public class Cliente {
 
 	@Override
 	public String toString() {
-		return "Cliente{id=" + id + ", nome='" + nome + "', email='" + email + "'}";
+		return "Cliente{nif=" + nif + ", nome='" + nome + "', email='" + email + "'}";
 	}
 }

@@ -61,7 +61,7 @@ public class Venda {
 	
 	@Override
 	public String toString() {
-		return "Venda{id=" + id + ", cliente=" + cliente.getNome() + ", quantidade=" + quantidade + ", preço total= "+ this.Total() +", data=" + data + "}";
+		return "Venda [id=" + id + ", cliente=" + cliente + ", prod_quant=" + prod_quant + ", data=" + data + "]";
 	}
 
 }

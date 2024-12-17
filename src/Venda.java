@@ -4,6 +4,7 @@ import java.util.*;
 public class Venda {
 	private static int contagem=0;
 	private int id;
+	
 	private Cliente cliente;
 	private ArrayList<ProdutoQuantidade> prod_quant;  //tuplos com (id_produto, quantidade)
 	private LocalDate data;
@@ -58,6 +59,9 @@ public class Venda {
 	public void setData(LocalDate data) {
 		this.data = data;
 	}
+	
+
+	
 	
 	@Override
 	public String toString() {

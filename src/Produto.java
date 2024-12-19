@@ -1,4 +1,6 @@
-public class Produto {
+import java.io.Serializable;
+
+public class Produto implements Serializable {
 	private static String[] catalogo = {"Computadores Portateis", "Computadores Desktop", "Monitores", "TVs", "Telemóveis", "Tablets"};
 	private static int contador=0;
 	private int id;
@@ -11,7 +13,7 @@ public class Produto {
 	public Produto(String nome, String categoria, double preco, int stock) {
 		this.id = 1+contador;
 		this.nome = nome;
-		this.categoria = Menus.categoria_escolher();
+		this.categoria = categoria;
 		this.preco = preco;
 		this.stock = stock;
 		contador++;

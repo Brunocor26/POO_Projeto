@@ -1,7 +1,8 @@
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.*;
 
-public class Venda {
+public class Venda implements Serializable{
 	private static int contagem=0;
 	private int id;
 	

@@ -1,6 +1,7 @@
 import java.io.Serializable;
 
 public class Pessoa implements Serializable{
+
 	protected int nif;			//protected para ser usado pela subclasse
 	protected String nome;		//protected também
 	

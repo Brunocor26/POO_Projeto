@@ -69,6 +69,7 @@ public class Menus implements Serializable {
                     System.out.println("Email:");
                     l.adicionarCliente(new Cliente(nif, s, Ler.umaString())); 
                     // Cria um novo objeto Cliente e adiciona-o à lista de clientes da loja.
+                    System.out.println("Cliente adicionado com sucesso!");
                     FileSystem.AtualizarFicheiroClientes(l.getClientes());
                     break;
 
@@ -117,7 +118,7 @@ public class Menus implements Serializable {
             // Apresenta o menu de produtos e lista os produtos atuais da loja.
             System.out.println("Produtos: " + l.getProdutos()
                     + "\n1-Adicionar\n2-Remover\n3-Alterar nome\n4-Alterar categoria\n5-Alterar preço\n6-Alterar Stock\n0-Sair");
-            k = Ler.umInt(); // Lê a opção escolhida pelo utilizador.
+            k=Ler.umInt();
 
             switch (k) {
                 case 1: // Adicionar um produto.
@@ -138,14 +139,15 @@ public class Menus implements Serializable {
                     double p1 = Ler.umDouble(); // Lê o preço do produto.
                     System.out.println("Stock: ");
                     // Cria um novo produto e adiciona-o à lista da loja.
-                    l.adicionarProduto(new Produto(s, s1, p1, Ler.umInt()));
+                    l.adicionarProduto(new Produto(s,s1, p1, Ler.umInt()));
                     FileSystem.AtualizarFicheiroProduto(l.getProdutos()); //atualiza a lista
                     break;
 
                 case 2: // Remover um produto.
                     System.out.println("Id do produto a remover:");
-                    // Remove o produto com base no ID introduzido (ID - 1 porque a lista é zero-based).
-                    l.getProdutos().remove(Ler.umInt() - 1);
+                    // Remove o produto com base no ID introduzido.
+                    int id_procurar=Ler.umInt();
+                    l.removerProduto(id_procurar);
                     FileSystem.AtualizarFicheiroProduto(l.getProdutos()); //atualiza a lista
                     break;
 
@@ -160,7 +162,7 @@ public class Menus implements Serializable {
 
                 case 4: // Alterar a categoria de um produto.
                     System.out.println("Id do produto:");
-                    int z1 = Ler.umInt(); // Lê o ID do produto.
+                    int z1 = Ler.umInt(); // Lê o ID do produto.    //-------------------------------------------------VER ISTO--------------------------------
                     System.out.println("Nova categoria:");
                     // Altera a categoria do produto, usando o método `categoria_escolher`.
                     l.getProdutos().get(z1).setCategoria(Menus.categoria_escolher());
@@ -184,7 +186,7 @@ public class Menus implements Serializable {
                     FileSystem.AtualizarFicheiroProduto(l.getProdutos()); //atualiza a lista
                     break;
             }
-        } while (k != 0); // O menu repete-se enquanto o utilizador não escolher 0.
+        } while (k!=0); // O menu repete-se enquanto o utilizador não escolher 0.
 
         FuncoesAjuda.LimparEcra(); // Limpa o ecrã para manter a interface organizada.
     }

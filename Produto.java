@@ -1,5 +1,7 @@
-public class Produto {
-	private static String[] catalogo = {"Computadores Portateis", "Computadores Desktop", "Monitores", "TVs", "Telemóveis", "Tablets"};
+import java.io.Serializable;
+
+public class Produto implements Serializable {
+	private static String[] catalogo = {"Computadores Portáteis", "Computadores Desktop", "Monitores", "TVs", "Telemóveis", "Tablets"};
 	private static int contador=0;
 	private int id;
 	private String nome;
@@ -11,10 +13,18 @@ public class Produto {
 	public Produto(String nome, String categoria, double preco, int stock) {
 		this.id = 1+contador;
 		this.nome = nome;
-		this.categoria = Menus.categoria_escolher();
+		this.categoria = categoria;
 		this.preco = preco;
 		this.stock = stock;
 		contador++;
+	}
+
+	public static String[] getCatalogo() {
+		return catalogo;
+	}
+
+	public static void setCatalogo(String[] catalogo) {
+		Produto.catalogo = catalogo;
 	}
 
 	// setters e getters
@@ -39,7 +49,7 @@ public class Produto {
 	}
 
 	public void setCategoria(String categoria) {
-		this.categoria = Menus.categoria_escolher();
+		this.categoria = FuncoesAjuda.categoria_escolher();
 	}
 
 	public double getPreco() {
@@ -69,7 +79,15 @@ public class Produto {
 
 	@Override
 	public String toString() {
-		return "Produto{id=" + id + ", nome='" + nome + "', categoria='" + categoria + "', preco=" + preco + ", stock="
+		return "Produto{id=" + id + ", nome='" + nome + "', categoria='" + categoria + "', preco=" + preco + "€, stock="
 				+ stock + "}";
+	}
+
+	public static int getContador() {
+		return contador;
+	}
+
+	public static void setContador(int contador) {
+		Produto.contador = contador;
 	}
 }

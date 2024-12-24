@@ -1,3 +1,4 @@
+import java.io.File;
 import java.util.*;
 
 public class Loja {
@@ -43,6 +44,13 @@ public class Loja {
 	public void adicionarProduto(Produto p) {
 		this.produtos.add(p);
 	}
+	
+	public void removerProduto(int id) {
+		for(int i=0; i<produtos.size();i++) {
+        	if (this.produtos.get(i).getId()==id)
+        		this.produtos.remove(i);
+        }
+	}
 
 	public Produto prod_pelo_id(int id_prod) throws IdException {
 		for (int i = 0; i < produtos.size(); i++) {
@@ -67,6 +75,12 @@ public class Loja {
 		return t;
 	}
 
+	public String Clientes_p_Linha() {
+		String a="";
+		for(int i=0; i<clientes.size(); i++)
+			a+= clientes.get(i) + "\n";
+		return a;
+	}
 	@Override
 	public String toString() {
 		return "Loja \n[Produtos=" + produtos + "\nClientes=" + clientes + "\nVendas=" + vendas + "]";

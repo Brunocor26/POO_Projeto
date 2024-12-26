@@ -19,6 +19,14 @@ public class Produto implements Serializable {
 		contador++;
 	}
 
+	public static int getContador() {
+		return contador;
+	}
+
+	public static void setContador(int contador) {
+		Produto.contador = contador;
+	}
+	
 	public static String[] getCatalogo() {
 		return catalogo;
 	}
@@ -69,25 +77,17 @@ public class Produto implements Serializable {
 	}
 
 	// Métodos auxiliares
-	public boolean reduzirStock(int quantidade) {
-		if (quantidade > stock) {
-			return false;
+	public void reduzirStock(int quantidade) throws StockException{
+		if (quantidade <= stock) {
+			stock-=quantidade;
 		}
-		this.stock -= quantidade;
-		return true;
+		else
+			throw new StockException("Não há stock suficiente para a transação!");
 	}
 
 	@Override
 	public String toString() {
 		return "Produto{id=" + id + ", nome='" + nome + "', categoria='" + categoria + "', preco=" + preco + "€, stock="
 				+ stock + "}";
-	}
-
-	public static int getContador() {
-		return contador;
-	}
-
-	public static void setContador(int contador) {
-		Produto.contador = contador;
 	}
 }

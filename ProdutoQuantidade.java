@@ -1,6 +1,6 @@
+import java.io.Serializable;
 
-
-public class ProdutoQuantidade { //objeto com o produto e a quantidade vendida correspondente
+public class ProdutoQuantidade implements Serializable { //objeto com o produto e a quantidade vendida correspondente
 	private int id_produto;
 	private int quantidade;
 	
@@ -29,4 +29,16 @@ public class ProdutoQuantidade { //objeto com o produto e a quantidade vendida c
 	public void setQuantidade(int quantidade) {
 		this.quantidade = quantidade;
 	}
+	
+	@Override
+	public Object clone() {
+		 ProdutoQuantidade copia = new ProdutoQuantidade( this.id_produto, this.quantidade);
+		 return copia;
+	}
+
+	@Override
+	public String toString() {
+		return "ProdutoQuantidade [id_produto=" + id_produto + ", quantidade=" + quantidade + "]";
+	}
+	
 }

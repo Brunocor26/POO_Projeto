@@ -45,6 +45,10 @@ public class Loja {
 		this.produtos.add(p);
 	}
 	
+	public void adicionarVenda(Venda v) {
+		this.vendas.add(v);
+	}
+	
 	public void removerProduto(int id) {
 		for(int i=0; i<produtos.size();i++) {
         	if (this.produtos.get(i).getId()==id)

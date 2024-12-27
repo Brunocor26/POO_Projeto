@@ -3,10 +3,11 @@ import java.io.Serializable;
 public class Cliente extends Pessoa implements Serializable {
 	
 	private String email;
+	private String localidade;
 	//outras (localidade, ...)
 
 	// Construtor
-	public Cliente(int nif, String nome, String email) {
+	public Cliente(int nif, String nome, String email, String localidade) {
 		super(nif, nome);
 		this.email = email;
 	}

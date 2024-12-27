@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class FileSystem implements Serializable {
 
-	static String caminho = "C:\\Users\\USUARIO\\eclipse-workspace\\POO_TP";
+	static String caminho = "C:\\Users\\bfc27\\eclipse-workspace\\TP_POO";
 
 	private static String FicheiroProdutos = caminho + "Produtos.dat";
 	private static String FicheiroClientes = caminho + "Clientes.dat";

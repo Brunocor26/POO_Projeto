@@ -43,7 +43,7 @@ public class Menus implements Serializable {
 		do {
 			// Apresentação do menu de gestão de clientes e lista atual de clientes.
 			System.out.println("Clientes: " + l.Clientes_p_Linha()
-					+ "\n1-Adicionar\n2-Remover\n3-Alterar nome\n4-Alterar Email\n0-Sair");
+					+ "\n1-Adicionar cliente\n2-Remover cliente\n3-Alterar nome\n4-Alterar email\n5-Alterar morada\n0-Sair");
 			k = Ler.umInt(); // Lê a opção escolhida pelo utilizador.
 
 			switch (k) {
@@ -53,7 +53,9 @@ public class Menus implements Serializable {
 				System.out.println("Nif:");
 				int nif = Ler.umInt(); // Lê o NIF do cliente.
 				System.out.println("Email:");
-				l.adicionarCliente(new Cliente(nif, s, Ler.umaString()));
+				String email=Ler.umaString();
+				System.out.println("Morada (só localidade:");
+				l.adicionarCliente(new Cliente(nif, s, email, Ler.umaString()));
 				// Cria um novo objeto Cliente e adiciona-o à lista de clientes da loja.
 				FileSystem.AtualizarFicheiroClientes(l.getClientes());
 				break;
@@ -93,7 +95,7 @@ public class Menus implements Serializable {
 				for (int i = 0; i < l.getClientes().size(); i++) {
 					// Percorre a lista de clientes.
 					if (l.getClientes().get(i).getNif() == z1) {
-						// Se encontrar um cliente com o NIF correspondente, altera o nome.
+						// Se encontrar um cliente com o NIF correspondente, altera o email.
 						System.out.println("Novo email:");
 						l.getClientes().get(i).setEmail(Ler.umaString());
 						;
@@ -101,11 +103,29 @@ public class Menus implements Serializable {
 				}
 				FileSystem.AtualizarFicheiroClientes(l.getClientes()); // atualiza a lista
 				break;
+			
+			case 5: // Alterar o email de um cliente.
+				System.out.println("nif do cliente:");
+				int z4 = Ler.umInt(); // Lê o NIF do cliente.
+				for (int i = 0; i < l.getClientes().size(); i++) {
+				// Percorre a lista de clientes.
+				if (l.getClientes().get(i).getNif() == z4) {
+					// Se encontrar um cliente com o NIF correspondente, altera a morada.
+					System.out.println("Nova morada:");
+					l.getClientes().get(i).setEmail(Ler.umaString());
+					;
+				}
 			}
+			FileSystem.AtualizarFicheiroClientes(l.getClientes()); // atualiza a lista
+			break;
+			
+		}
 			break; // Este `break` parece estar fora de lugar e pode ser um erro.
-		} while (k != 0); // O menu será repetido enquanto o utilizador não escolher 0 para sair.
+		}while(k!=0); // O menu será repetido enquanto o utilizador não escolher 0 para sair.
 
-		FuncoesAjuda.LimparEcra(); // Limpa o ecrã para manter a interface organizada.
+	FuncoesAjuda.LimparEcra(); // Limpa o ecrã
+	System.out.println("Operação concluída");
+
 	}
 
 	public static void menu_produtos(Loja l) throws IdException {
@@ -187,9 +207,10 @@ public class Menus implements Serializable {
 				FileSystem.AtualizarFicheiroProduto(l.getProdutos()); // atualiza a lista
 				break;
 			}
-		} while (k != 0); // O menu repete-se enquanto o utilizador não escolher 0.
+		} while (k != 0); // O menu repete-se enquanto o utilizador não escolher 0
 
-		FuncoesAjuda.LimparEcra(); // Limpa o ecrã para manter a interface organizada.
+		FuncoesAjuda.LimparEcra(); // Limpa o ecrã
+		System.out.println("Operação concluída");
 	}
 
 	public static void menu_vendas(Loja l) throws StockException, IdException {
@@ -210,7 +231,7 @@ public class Menus implements Serializable {
 				String nome = Ler.umaString();
 				System.out.println("Email:");
 				String email = Ler.umaString();
-				l.adicionarCliente(new Cliente(nif_cliente, nome, email));
+				l.adicionarCliente(new Cliente(nif_cliente, nome, email, Ler.umaString()));
 				FileSystem.AtualizarFicheiroClientes(l.getClientes());
 				break;
 			case 2:
@@ -304,35 +325,44 @@ public class Menus implements Serializable {
 					l.prod_pelo_id(carrinho.get(i).getId_produto()).reduzirStock(carrinho.get(i).getQuantidade());
 				}
 
-				// registar a venda (aqui o carrinho nao pode ser passado diretamente, tem de ser clonado, porque depois da compra vai ser limpo)
+				// registar a venda (aqui o carrinho nao pode ser passado diretamente, tem de
+				// ser clonado, porque depois da compra vai ser limpo)
 				l.adicionarVenda(new Venda(FuncoesAjuda.devolverCliente(l, nif_cliente),
-						(ArrayList<ProdutoQuantidade> )carrinho.clone(), LocalDate.now()));
+						(ArrayList<ProdutoQuantidade>) carrinho.clone(), LocalDate.now()));
 
 				FileSystem.AtualizarFicheiroVendas(l.getVendas());
 				FileSystem.AtualizarFicheiroProduto(l.getProdutos());
 
-				System.out.println("Compra finalizada! Total: " + total + "€");
-				carrinho.clear(); // Limpa o carrinho após finalizar a compra
-				return; // Sai do menu de vendas
+				FuncoesAjuda.LimparEcra();
+				System.out.println("Compra finalizada! Total a pagar: " + total + "€");
+				System.out.println("Deseja confirmar a transação?");
+				System.out.println("1 - Sim\n2 - Não");
+
+				int confirmar = Ler.umInt();
+				if (confirmar == 1) {
+					System.out.println("Transação confirmada! Obrigado pela sua compra.");
+					carrinho.clear(); // Limpa o carrinho após finalizar a compra
+					return; // Sai do menu de vendas
+				} else {
+					System.out.println("Transação cancelada. Nenhum dado foi alterado.");
+					return; // Sai do menu de vendas
+				}
 			}
 		} while (k != 0);
-
-		System.out.println("A voltar ao menu inicial...");
 	}
 
 	public static void menu_historico_vendas(Loja l) {
-		    System.out.println("------ Histórico de Vendas ------");
-		    ArrayList<Venda> vendas = l.getVendas();
+		System.out.println("------ Histórico de Vendas ------");
+		ArrayList<Venda> vendas = l.getVendas();
 
-		    if (vendas.isEmpty()) {
-		        System.out.println("Nenhuma venda registada.");
-		    } else {
-		        for (Venda venda : vendas) {
-		            System.out.println(venda);
-		        }
-		    }
+		if (vendas.isEmpty()) {
+			System.out.println("Nenhuma venda registada.");
+		} else {
+			for (int i = 0; i < l.getVendas().size(); i++) {
+				System.out.println(l.getVendas().get(i));
+			}
 		}
-
+	}
 
 	public static void menu_estatisticas(Loja l) {
 

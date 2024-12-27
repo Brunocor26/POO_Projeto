@@ -1,5 +1,3 @@
-import myinputs.Ler;
-
 public class FuncoesAjuda {
 
 	public static boolean verificarCliente(Loja L, int nif) { //vê se na loja L, há um cliente com o nif dado
@@ -56,7 +54,8 @@ public class FuncoesAjuda {
 	            default:
 	                System.out.println("Opção inválida. Por favor, escolha uma opção de 1 a 6.");
 	        }
-	    } while (true); // Continua até uma opção válida ser escolhida
+	    } while (k<1 || k>6); // Continua até uma opção válida ser escolhida
+		return null;
 	}
 
 

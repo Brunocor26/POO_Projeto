@@ -61,9 +61,6 @@ public class Venda implements Serializable{
 		this.data = data;
 	}
 	
-
-	
-	
 	@Override
 	public String toString() {
 		return "Venda [id=" + id + ", cliente=" + cliente + ", prod_quant=" + prod_quant + ", data=" + data + "]";

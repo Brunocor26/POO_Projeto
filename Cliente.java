@@ -21,8 +21,15 @@ public class Cliente extends Pessoa implements Serializable {
 		return email;
 	}
 
+	public String getLocalidade() {
+		return localidade;
+	}
+
+	public void setLocalidade(String localidade) {
+		this.localidade = localidade;
+	}
 	
 	public String toString() {
-		return "Cliente {nif=" + super.getNif() + ", nome=" + super.getNome() + ", email=" + email + "}";
+		return "Cliente {nif=" + super.getNif() + ", nome=" + super.getNome() + ", email=" + email +", localidade= "+ localidade +"}";
 	}
 }

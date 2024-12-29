@@ -412,11 +412,29 @@ public class Menus implements Serializable {
 		                case 6:
 		                    Estatisticas.ultimavenda(l);
 		                    break;
+		                case 7:
+		                    Estatisticas.vendasHoje(l);;
+		                    break;
+		                case 8:
+		                    Estatisticas.vendasEstaSemana(l);;
+		                    break;
+		                case 9:
+		                    Estatisticas.vendasEsteMes(l);;
+		                    break;
+		                case 10:
+							System.out.println("Produto mais vendido: "+Estatisticas.produtomaisvendido(l));
+							break;
+		                case 11:
+		                	System.out.println("Produto menos vendido: "+Estatisticas.produtoMenosVendido(l));
+		                	break;
+		                case 12:
+		                	System.out.println("Melhor cliente: "+ Estatisticas.MelhorCliente(l));
+		                	break;
 		                case 0:
-		                    System.out.println("Saindo...");
+		                    FuncoesAjuda.LimparEcra();
 		                    break;
 		                default:
-		                    System.out.println("Opção inválida. Tente novamente.");
+		                    System.out.println("Opção inválida.");
 		                    break;
 		            }
 		        } while (opcao != 0);
